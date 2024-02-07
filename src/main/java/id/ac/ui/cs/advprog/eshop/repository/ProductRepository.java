@@ -9,41 +9,46 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
-    private List<Product> products = new ArrayList<>();
+    private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
-        if (product.getProductQuantity() < 0) {
-            product.setProductQuantity(0);
-        }
-        products.add(product);
+        productData.add(product);
         return product;
     }
 
-    public Product edit(Product editedProduct) {
-        if (editedProduct.getProductName().isEmpty()) {
-            editedProduct.setProductName("Unnamed Product");
+    public Product edit(Product updatedProduct){
+        if(updatedProduct.getProductQuantity() < 0){
+            updatedProduct.setProductQuantity(0);
         }
-
-        if (editedProduct.getProductQuantity() < 0) {
-            editedProduct.setProductQuantity(0);
+        for (int i = 0; i < productData.size(); i++) {
+            Product product = productData.get(i);
+            if(product.getProductId().equals(updatedProduct.getProductId())){
+                productData.set(i, updatedProduct);
+                return updatedProduct;
+            }
         }
+        return null;
+    }
+  
+    public Product delete(Product product1) {
+          Product product = findById(product1);
+          if (product != null) {
+              productData.remove(product);
+              return product;
+          }
+          return null;
+      }
 
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            if (product.getProductId().equals(editedProduct.getProductId())) {
-                products.set(i, editedProduct);
-                return editedProduct;
+     public Product findById(Product product1){
+        for(Product product: productData){
+            if(product.getProductId().equals(product1)){
+                return product;
             }
         }
         return null;
     }
 
-    public Iterator<Product> findAll() {
-        return products.iterator();
-    }
-
-    public Product delete(Product product) {
-        productData.removeIf(prod -> prod.getProductId().equals(product.getProductId()));
-        return null;
+    public Iterator<Product> findAll(){
+        return productData.iterator();
     }
 }
