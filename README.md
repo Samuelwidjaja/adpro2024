@@ -19,3 +19,20 @@ Meskipun kode telah memenuhi sebagian besar prinsip-prinsip ini, ada beberapa ar
 **Manajemen Eksepsi yang Lebih Baik**: Dapat memperbaiki manajemen eksepsi dengan menangani kasus-kasus eksepsi yang mungkin terjadi dengan lebih baik, seperti menangani eksepsi koneksi basis data atau kegagalan operasi jaringan.
 
 **Penggunaan Logging**: Bisa meningkatkan penggunaan logging untuk memudahkan pelacakan dan penanganan masalah di masa mendatang, terutama pada bagian-bagian penting dari kode yang mungkin menyebabkan kesalahan.
+
+## Refleksi 2:
+
+Setelah menulis CreateProductFunctionalTest.java bersama dengan kasus uji yang sesuai, dan diminta untuk membuat suite tes fungsional lain yang memverifikasi jumlah item dalam daftar produk, pertimbangkan kebersihan kode.
+
+Penulisan kode baru yang serupa dengan suite tes fungsional sebelumnya bisa menambahkan sedikit duplikasi kode. Ini dapat mengurangi kualitas kode karena menyebabkan redundansi dan sulit dalam pemeliharaan.
+
+Potensi masalah kebersihan kode dapat mencakup:
+
+**Duplikasi Kode**: Duplikasi kode dapat mengarah pada kesulitan pemeliharaan dan peningkatan biaya pengembangan.
+**Kelambatan**: Penambahan kode yang tidak perlu dapat mengurangi kinerja dan menyulitkan pemahaman kode.
+Untuk meningkatkan kebersihan kode, dapat direkomendasikan untuk:
+
+Refaktor kode untuk mengurangi duplikasi, mungkin dengan membuat fungsi bantuan yang digunakan oleh suite tes fungsional yang berbeda.
+Gunakan pola desain yang sesuai, seperti Page Object Pattern, untuk mengelola interaksi dengan elemen web dan menghindari duplikasi kode.
+Pertimbangkan untuk menggunakan pengujian parametris untuk menghindari duplikasi dalam pengujian yang serupa.
+Dengan memperbaiki masalah-masalah ini, dapat meningkatkan kebersihan dan pemeliharaan kode.
