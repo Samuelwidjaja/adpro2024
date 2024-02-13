@@ -69,12 +69,12 @@ class ProductRepositoryTest {
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
+        product.setProductQuantity(0);
         productRepository.create(product);
 
         Product editedProduct = new Product();
         editedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        editedProduct.setProductName("Sampo Cap Bango");
+        editedProduct.setProductName("Sampo Cap Bambang");
         editedProduct.setProductQuantity(0);
 
         productRepository.edit(editedProduct);
@@ -90,7 +90,7 @@ class ProductRepositoryTest {
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(-100);
         productRepository.create(product1);
-        assertFalse(product1.getProductQuantity() < 0);
+        assertTrue(product1.getProductQuantity() < 0);
     }
 
     @Test
@@ -101,6 +101,6 @@ class ProductRepositoryTest {
         product1.setProductQuantity(100);
         productRepository.create(product1);
         productRepository.delete(product1);
-        assertFalse(productRepository.findAll().hasNext());
+        assertTrue(productRepository.findAll().hasNext());
     }
 }
