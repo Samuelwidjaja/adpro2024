@@ -1,3 +1,5 @@
+## Module 1
+
 ## Refleksi 1:
 
 Saat mengimplementasikan fitur baru menggunakan Spring Boot, telah diperhatikan beberapa prinsip pemrograman bersih dan praktik keamanan yang telah dipelajari:
@@ -36,3 +38,21 @@ Refaktor kode untuk mengurangi duplikasi, mungkin dengan membuat fungsi bantuan 
 Gunakan pola desain yang sesuai, seperti Page Object Pattern, untuk mengelola interaksi dengan elemen web dan menghindari duplikasi kode.
 Pertimbangkan untuk menggunakan pengujian parametris untuk menghindari duplikasi dalam pengujian yang serupa.
 Dengan memperbaiki masalah-masalah ini, dapat meningkatkan kebersihan dan pemeliharaan kode.
+
+## Module 2
+
+## Refleksi:
+Masalah Kualitas Kode yang Diperbaiki:
+Kesalahan pada ID HTML: Kesalahan dengan ID productName dalam HTML menunjukkan masalah potensial pada kasus pengujian Selenium. Dengan memastikan bahwa elemen HTML diidentifikasi dengan benar dan diinteraksi, kita meningkatkan kehandalan dan ketepatan tes tersebut.
+
+Masalah dengan Fungsi Edit dan Hapus: Mengalami masalah dengan fungsi edit dan hapus menunjukkan adanya bug potensial atau implementasi yang salah dalam logika aplikasi. Dengan mengidentifikasi dan menangani masalah ini, kita meningkatkan fungsionalitas dan pengalaman pengguna keseluruhan dari aplikasi e-shop.
+
+Strategi untuk Memperbaiki:
+Untuk mengatasi masalah kualitas kode, saya akan memulai dengan meninjau kasus pengujian Selenium untuk memastikan bahwa mereka mencerminkan perilaku yang diharapkan dari aplikasi secara akurat. Ini melibatkan verifikasi ID elemen, interaksi, dan asertions. Selanjutnya, saya akan melakukan debugging terhadap fungsionalitas edit dan hapus dalam kode aplikasi untuk mengidentifikasi kesalahan logika atau konfigurasi yang mungkin.
+
+Integrasi Berkelanjutan dan Penyampaian Berkelanjutan:
+Implementasi saat ini kemungkinan tidak sepenuhnya memenuhi definisi Integrasi Berkelanjutan (CI) dan Penyampaian Berkelanjutan (CD) jika terdapat masalah kualitas kode seperti tes yang gagal atau bug dalam aplikasi. Proses CI/CD bertujuan untuk mengotomatisasi pembangunan, pengujian, dan penyampaian perangkat lunak, memastikan pengiriman pembaruan yang cepat dan andal ke produksi. Namun, jika tes gagal atau terdapat masalah kritis dalam aplikasi, hal tersebut dapat mengganggu jalur CI/CD dan menghambat proses pengiriman kontinyu. Oleh karena itu, menyelesaikan masalah kualitas kode adalah hal yang penting untuk mencapai semua manfaat dari CI/CD, memungkinkan siklus umpan balik yang lebih cepat dan siklus implementasi yang lebih lancar.
+
+
+
+
