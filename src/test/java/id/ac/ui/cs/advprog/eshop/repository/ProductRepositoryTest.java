@@ -101,6 +101,6 @@ class ProductRepositoryTest {
         product1.setProductQuantity(100);
         productRepository.create(product1);
         productRepository.delete(product1);
-        assertTrue(productRepository.findAll().hasNext());
+        assertFalse(productRepository.findAll().hasNext());
     }
 }
