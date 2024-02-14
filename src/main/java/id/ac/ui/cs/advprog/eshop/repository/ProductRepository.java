@@ -30,8 +30,8 @@ public class ProductRepository {
         return null;
     }
   
-    public Product delete(Product product1) {
-          Product product = findById(product1);
+    public Product delete(Product item) {
+          Product product = findById(item.getProductId());
           if (product != null) {
               productData.remove(product);
               return product;
@@ -39,9 +39,9 @@ public class ProductRepository {
           return null;
       }
 
-     public Product findById(Product product1){
+     public Product findById(String productId){
         for(Product product: productData){
-            if(product.getProductId().equals(product1)){
+            if(product.getProductId().equals(productId)){
                 return product;
             }
         }

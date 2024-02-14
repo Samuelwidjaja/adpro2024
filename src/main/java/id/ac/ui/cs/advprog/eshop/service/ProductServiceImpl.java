@@ -37,4 +37,8 @@ public class ProductServiceImpl implements ProductService {
         productRepository.edit(product);
         return product;
     }
+
+    public Product findById(String productId){
+        return productRepository.findById(productId);
+    }
 }
