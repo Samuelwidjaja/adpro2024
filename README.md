@@ -36,3 +36,90 @@ Refaktor kode untuk mengurangi duplikasi, mungkin dengan membuat fungsi bantuan 
 Gunakan pola desain yang sesuai, seperti Page Object Pattern, untuk mengelola interaksi dengan elemen web dan menghindari duplikasi kode.
 Pertimbangkan untuk menggunakan pengujian parametris untuk menghindari duplikasi dalam pengujian yang serupa.
 Dengan memperbaiki masalah-masalah ini, dapat meningkatkan kebersihan dan pemeliharaan kode.
+
+## Refleksi 3:
+
+**1. Explain what principles you apply to your project!**
+Saya mencoba menerapkan ke-5 prinsip yang saya pelajari di kelas. Berikut adalah prinsip-prinsip tersebut:
+
+a. Single Responsibility Principle (SRP) --- Berarti bahwa sebuah kelas harus memiliki satu dan hanya satu alasan untuk berubah (harus memiliki hanya satu pekerjaan). Dengan prinsip ini, saya harus memisahkan 'CarController' dari 'ProductController' sehingga setiap file akan fokus pada satu pekerjaan/tanggung jawab. Sebagai contoh, CarController.java bertanggung jawab untuk menangani perilaku dan properti terkait mobil, sementara ProductController.java bertanggung jawab untuk menangani perilaku dan properti terkait produk.
+
+b. Open-Closed Principle (OCP) --- Berarti bahwa objek atau entitas harus terbuka untuk ekstensi tetapi tertutup untuk modifikasi. Hal ini menyiratkan bahwa sebuah kelas harus dapat diperluas tanpa mengubah kelas itu sendiri. Saya telah menyertakan kemampuan untuk mengatur ID di konstruktor kelas Car, memungkinkan untuk perluasan. Jika ada kebutuhan untuk mengubah mekanisme penyetelan ID, tidak perlu mengubah kode sumber. Selain itu, memperkenalkan metode update yang mengubah objek Car sebagai keseluruhan, daripada atribut-atribut individual, meningkatkan fleksibilitas kelas CarRepository untuk perluasan tanpa keharusan untuk membuat perubahan pada kode sumber.
+
+c. Liskov Substitution Principle (LSP) --- Berarti bahwa setiap subclass atau kelas turunan harus dapat digantikan oleh kelas dasar atau induk mereka. Saya mencoba membuat CarController tidak memperpanjang ProductController karena masing-masing dari mereka menggunakan model yang berbeda.
+
+d. Interface Segregation Principle (ISP) --- Berarti bahwa klien tidak boleh dipaksa untuk mengimplementasikan sebuah antarmuka yang tidak digunakan, atau klien tidak boleh dipaksa untuk bergantung pada metode yang tidak digunakan. Saya mencoba membuat 2 antarmuka yang berbeda, yang disebut CarService dan ProductService.
+
+e. Dependency Inversion Principle (DIP) --- Berarti bahwa entitas harus bergantung pada abstraksi, bukan pada konkret. Ini menyatakan bahwa modul tingkat tinggi tidak boleh bergantung pada modul tingkat rendah, tetapi mereka harus bergantung pada abstraksi. Di dalam CarController saya, saya mencoba untuk mengubah CarServiceImpl menjadi CarService.
+
+**2. Explain the advantages of applying SOLID principles to your project with examples.**
+Prinsip-prinsip SOLID bertujuan untuk membuat program yang lebih mudah dipelihara, diperluas, dan fleksibel. Berikut adalah beberapa keuntungan yang saya dapatkan dari menerapkan prinsip-prinsip SOLID pada proyek saya:
+
+a. Single Responsibility Principle (SRP) ---
+
+Keuntungan: Kode akan lebih mudah dipelihara dan lebih mudah dipahami karena setiap kelas memiliki hanya satu alasan untuk berubah.
+
+Contoh: Membuat kelas CarController dan ProductController terpisah, masing-masing dengan satu tanggung jawab.
+
+b. Open/Closed Principle (OCP) ---
+
+Keuntungan: Memungkinkan penambahan fungsionalitas baru tanpa mengubah kode yang sudah ada, meningkatkan stabilitas.
+
+Contoh: carData.set(i, updatedCar); di CarRepository.java.
+
+c. Liskov Substitution Principle (LSP) ---
+
+Keuntungan: Ini mempromosikan penggunaan kembali kode dan konsistensi.
+
+Contoh: CarController tidak memperpanjang ProductController karena masing-masing dari mereka menggunakan model yang berbeda.
+
+d. Interface Segregation Principle (ISP) ---
+
+Keuntungan: Mencegah sebuah kelas menjadi terbebani dengan metode yang tidak relevan dan mempromosikan desain yang lebih modular.
+
+Contoh: 2 antarmuka yang berbeda, yang disebut CarService dan ProductService.
+
+e. Dependency Inversion Principle (DIP) ---
+
+Keuntungan: Fleksibilitas, kemudahan pengujian, dan pemeliharaan kode.
+
+Contoh: Di dalam CarController saya, saya mencoba untuk mengubah CarServiceImpl menjadi CarService.
+
+**3. Explain the disadvantages of not applying SOLID principles to your project with examples.**
+Tidak menerapkan prinsip SOLID dapat membuat basis kode kurang mudah dipelihara, sulit diperluas, dan rentan terhadap kesalahan. Berikut adalah beberapa kerugian:
+
+a. TIDAK MENERAPKAN Single Responsibility Principle (SRP) ---
+
+Kerugian: Kode akan sulit dipelihara dan dipahami.
+
+Contoh: ProductController menangani baik CarController maupun ProductController itu sendiri. Jadi memiliki lebih dari satu tanggung jawab.
+
+b. TIDAK MENERAPKAN Open/Closed Principle (OCP) ---
+
+Kerugian: Kode akan rapuh dan memerlukan perubahan yang sering.
+
+Contoh: dari carData.set(i, updatedCar); di CarRepository.java menjadi
+
+car.setCarName(updatedCar.getCarName());
+
+car.setCarColor(updatedCar.getCarColor());
+
+car.setCarQuantity(updatedCar.getCarQuantity());
+
+c. TIDAK MENERAPKAN Liskov Substitution Principle (LSP) ---
+
+Kerugian: Kode tidak akan dapat digunakan kembali dan memiliki konsistensi yang rendah.
+
+Contoh: kelas CarController memperpanjang ProductController, sementara ProductController dan CarController masing-masing menggunakan model yang berbeda.
+
+d. TIDAK MENERAPKAN Interface Segregation Principle (ISP) ---
+
+Kerugian: Sebuah kelas menjadi terbebani dengan metode yang tidak relevan.
+
+Contoh: Jika ProductService mengimplementasikan metode yang tidak relevan dari CarService (atau mereka menggabungkannya).
+
+e. TIDAK MENERAPKAN Dependency Inversion Principle (DIP) ---
+
+Kerugian: Akan lebih sulit untuk menguji dan memelihara.
+
+Contoh: CarServiceImpl bergantung pada CarRepository daripada antarmukanya atau ketika ProductServiceImpl bergantung pada ProductRepository daripada antarmukanya.
