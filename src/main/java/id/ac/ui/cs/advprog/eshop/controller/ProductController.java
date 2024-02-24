@@ -66,7 +66,6 @@ class CarController extends ProductController{
     private CarServiceImpl carservice;
 
     public CarController(ProductService service,CarServiceImpl carservice) {
-        super(service);
         this.carservice = carservice;
     }
 
