@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
+import id.ac.ui.cs.advprog.eshop.controller.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 
-import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.junit.jupiter.api.extension.ExtendWith;
