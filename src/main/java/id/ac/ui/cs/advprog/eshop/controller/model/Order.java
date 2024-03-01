@@ -19,7 +19,6 @@ public class Order {
     public Order(String id, List<Product> products, Long orderTime, String author){
         
     }
-
     public Order(String id, List<Product> products, Long orderTime, String author, String status){
         
     }
