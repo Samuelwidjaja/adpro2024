@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import id.ac.ui.cs.advprog.eshop.controller.model.Product;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 
 import java.util.Iterator;
 
