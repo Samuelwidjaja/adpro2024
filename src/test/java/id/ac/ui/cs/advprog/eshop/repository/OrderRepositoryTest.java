@@ -2,18 +2,17 @@ package id.ac.ui.cs.advprog.eshop.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.annotation.Order;
 
 import enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.controller.model.Order;
 import id.ac.ui.cs.advprog.eshop.controller.model.Product;
-import id.ac.ui.cs.advprog.eshop.repository.*;
-
 
 class OrderRepositoryTest {
     OrderRepository orderRepository;
@@ -50,7 +49,7 @@ class OrderRepositoryTest {
         Order result = orderRepository.save(order);
 
         Order findResult = orderRepository.findById(orders.get(1).getId());
-        assertEquals(order, getId(), result.getId());
+        assertEquals(order.getId(), result.getId());
         assertEquals(order.getId(), findResult.getId());
         assertEquals(order.getOrderTime(), findResult.getOrderTime());
         assertEquals(order.getAuthor(), findResult.getAuthor());
@@ -89,7 +88,7 @@ class OrderRepositoryTest {
     @Test
     void testFindByIdIfIdNotFound(){
         for (Order order : orders){
-            orderRespository.save(order);
+            orderRepository.save(order);
         }
 
         Order findResult = orderRepository.findById("zczc");
@@ -99,7 +98,7 @@ class OrderRepositoryTest {
     @Test
     void testFindAllByAuthorIfAuthorCorrect(){
         for (Order order : orders){
-            orderRespository.save(order);
+            orderRepository.save(order);
         }
 
         List<Order> orderList = orderRepository.findAllByAuthor(
