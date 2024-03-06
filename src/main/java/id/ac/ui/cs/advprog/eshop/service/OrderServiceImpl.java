@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import id.ac.ui.cs.advprog.eshop.controller.model.Order;
 import id.ac.ui.cs.advprog.eshop.repository.OrderRepository;
 
 @Service
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderRepository orderRepository;
 

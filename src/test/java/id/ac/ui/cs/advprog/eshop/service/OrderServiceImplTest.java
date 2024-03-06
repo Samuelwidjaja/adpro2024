@@ -77,11 +77,11 @@ class OrderServiceImplTest {
     void testUpdateStatus(){
         Order order = orders.get(1);
         Order newOrder = new Order(order.getId(), order.getProducts(), order.getOrderTime(),
-            order.getAuthor, OrderStatus.SUCCESS.getValue());
+            order.getAuthor(), OrderStatus.SUCCESS.getValue());
         doReturn(order).when(orderRepository).findById(order.getId());
         doReturn(newOrder).when(orderRepository).save(any(Order.class));
 
-        Order result = orderService.updateStatus(order.getId(). OrderStatus.SUCCESS.getValue());
+        Order result = orderService.updateStatus(order.getId(), OrderStatus.SUCCESS.getValue());
 
         assertEquals(order.getId(), result.getId());
         assertEquals(OrderStatus.SUCCESS.getValue(), result.getStatus());
