@@ -4,15 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.controller.model.Order;
+import id.ac.ui.cs.advprog.eshop.controller.model.Payment;
 import id.ac.ui.cs.advprog.eshop.controller.model.Product;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 class PaymentTest {
@@ -27,12 +28,10 @@ class PaymentTest {
         product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(2);
-
         Product product2 = new Product();
         product2.setProductId("a2c62328-4a37-4664-83c7-f32db8620155");
         product2.setProductName("Sabun Cap Usep");
         product2.setProductQuantity(1);
-
         this.products.add(product1);
         this.products.add(product2);
 
@@ -41,6 +40,7 @@ class PaymentTest {
         Order order2 = new Order("24652556-012a-4c07-b546-54eb1396d79a", this.products, 170856000L, "Safira Widjaja", OrderStatus.SUCCESS.getValue());
         this.orders.add(order1);
         this.orders.add(order2);
+
         this.order = order1;
     }
 
@@ -68,13 +68,11 @@ class PaymentTest {
     void testRejectedPaymentEmptyData() {
         Map<String, String> paymentData = new HashMap<>();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
-        });
+        Payment voucherPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", null, paymentData);
+        assertEquals("REJECTED", voucherPayment.getStatus());
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "PAYMENT_BY_BANK_TRANSFER", this.orders.getFirst(), paymentData);
-        });
+        Payment codPayment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "PAYMENT_BY_BANK_TRANSFER", null, paymentData);
+        assertEquals("REJECTED", codPayment.getStatus());
     }
 
     // Voucher Code
@@ -90,7 +88,7 @@ class PaymentTest {
     @Test
     void testRejectedVoucherCodeNot16Chars() {
         Map<String, String> paymentData = new HashMap<>();
-        paymentData.put("voucherCode", "ESHOP123");
+        paymentData.put("voucherCode", "ESHOP");
 
         Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
@@ -99,7 +97,7 @@ class PaymentTest {
     @Test
     void testRejectedVoucherCodeWrongPrefix() {
         Map<String, String> paymentData = new HashMap<>();
-        paymentData.put("voucherCode", "EEHOP1234ABC5678");
+        paymentData.put("voucherCode", "EHEHE1234ABC5678");
 
         Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
@@ -108,7 +106,7 @@ class PaymentTest {
     @Test
     void testRejectedVoucherCodeNot8CharNumerical() {
         Map<String, String> paymentData = new HashMap<>();
-        paymentData.put("voucherCode", "ESHOP1234ABC567Z");
+        paymentData.put("voucherCode", "ESHOP1234ABC567A");
 
         Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "VOUCHER_CODE", this.orders.getFirst(), paymentData);
         assertEquals("REJECTED", payment.getStatus());
@@ -127,7 +125,7 @@ class PaymentTest {
     }
 
     @Test
-    void testRejectedPaymentByBankTransferBankName() {
+    void testRejectedPaymentByBankTransferEmptyBankName() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("referenceCode", "028");
         Payment payment = new Payment("1994cddb-6f3b-40ca-aed1-eba78db32295", "PAYMENT_BY_BANK_TRANSFER", this.orders.getFirst(), paymentData);
