@@ -123,3 +123,11 @@ e. TIDAK MENERAPKAN Dependency Inversion Principle (DIP) ---
 Kerugian: Akan lebih sulit untuk menguji dan memelihara.
 
 Contoh: CarServiceImpl bergantung pada CarRepository daripada antarmukanya atau ketika ProductServiceImpl bergantung pada ProductRepository daripada antarmukanya.
+
+## Refleksi 4:
+
+TDD flow: Mengonfirmasi bahwa tes fungsional mencukupi. Memastikan pengujian kasus tepi. Pertimbangkan pengujian terintegrasi. Tambahkan pengujian unit untuk memandu desain. Pastikan siklus umpan balik cepat. Pertimbangkan pengujian integrasi yang lebih cepat. Jalankan subset tes saat diperlukan. Manfaatkan waktu menunggu dengan multitasking.
+
+F.I.R.S.T. adalah singkatan dari Fast, Isolated/Independent, Repeatable, Self-Validating, dan Timely. Prinsip ini mengarahkan pembuatan tes unit yang efektif. Tes harus berjalan cepat, mandiri, memberikan hasil yang konsisten, mudah divalidasi, dan ditulis sebelum kode produksi terkait. Prinsip ini membantu mengurangi risiko, meningkatkan keterbacaan, dan mendukung integrasi perubahan dengan baik.
+
+Unit tests: Pastikan tes cepat, terisolasi, ulang, dan validasi diri. Dibuat sebelum kode produksi. Perhatikan prinsip F.I.R.S.T. untuk menghindari risiko, meningkatkan keterbacaan, dan integrasi perubahan yang lancar.
